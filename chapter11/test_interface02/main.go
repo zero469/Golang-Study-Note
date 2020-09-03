@@ -5,12 +5,12 @@ import(
 	"sort"
 	"math/rand"
 )
-//自定义类型
+//Hero 自定义类型
 type Hero struct{
 	Name string
 	Age int
 }
-//自定义类型的切片
+//HeroSlice 定义类型的切片
 type HeroSlice []Hero
 
 //实现sort.Sort所需的Interface
