@@ -37,17 +37,6 @@ func (camera Camera)Stop()  {
 }
 
 
-
-//Computer 计算机
-type Computer struct{
-
-}
-//Working 函数可以接受实现Usb接口的所有实参类型
-func (c Computer) Working(usb Usb)  {
-	usb.Start()
-	usb.Stop()
-}
-
 func main()  {
 	//多态数组，使用Usb数组存放Phone和Camera变量
 	var usbArr [3]Usb
