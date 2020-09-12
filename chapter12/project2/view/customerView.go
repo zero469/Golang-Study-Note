@@ -50,6 +50,45 @@ func (cv *customerView)add()  {
 		fmt.Println("添加失败！")
 	}
 }
+
+//修改客户信息
+func (cv *customerView)update()  {
+	fmt.Println("-----------------------修改客户----------------------")
+	fmt.Print("请输入待删除客户编号(-1退出)：")
+	id := -1
+	fmt.Scanln(&id)
+	if id == -1{
+		return
+	}
+	index := cv.service.FindByID(id)
+	if index == -1{
+		fmt.Println("修改失败：客户ID不存在")
+		return
+	}
+
+	customer := cv.service.GetInfoByID(id)
+	fmt.Printf("姓名(%v):", customer.Name)
+	name := ""
+	fmt.Scanln(&name)
+	fmt.Printf("性别(%v):", customer.Gender)
+	gender := ""
+	fmt.Scanln(&gender)
+	fmt.Printf("年龄(%v):", customer.Age)
+	age := ""
+	fmt.Scanln(&age)
+	fmt.Printf("电话(%v):", customer.Phone)
+	phone := ""
+	fmt.Scanln(&phone)
+	fmt.Printf("邮箱(%v):", customer.Email)
+	email := ""
+	fmt.Scanln(&email)
+	if cv.service.Update(id, name, gender, age, phone, email){
+		fmt.Println("-----------------------修改成功----------------------")
+	} else {
+		fmt.Println("修改失败")
+	}
+}
+
 //删除客户
 func (cv *customerView)deleta()  {
 	fmt.Println("-----------------------删除客户----------------------")
@@ -75,6 +114,24 @@ func (cv *customerView)deleta()  {
 		}
 	}
 }
+
+//退出循环
+func (cv *customerView) exit() {
+	for{
+		fmt.Print("你确定要退出吗[y/n]：")
+		flag := ""
+		fmt.Scanln(&flag)
+		if flag == "y" || flag == "Y"{
+			cv.loop = false
+			return
+		} else if flag == "n" || flag == "N"{
+			cv.loop = true
+			return
+		} 
+		
+	}
+}
+
 //显示主菜单
 func (cv *customerView) mainMenu()  {
 	for{
@@ -91,13 +148,13 @@ func (cv *customerView) mainMenu()  {
 		case "1":
 			cv.add()
 		case "2":
-			fmt.Println("修改客户")
+			cv.update()
 		case "3":
 			cv.deleta()
 		case "4":
 			cv.list()
 		case "5":
-			cv.loop = false
+			cv.exit()
 		default:
 			fmt.Println("输入有误")
 		}
