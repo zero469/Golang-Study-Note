@@ -31,3 +31,14 @@ func NewCustomer(id int, name string, gendar string,
 		Email : email,
 	}
 }
+
+func NewCustomerWithoutId(name string, gendar string,
+	age int, phone string, email string)  Customer{
+	return Customer{
+		Name : name,
+		Gender : gendar,
+		Age : age,
+		Phone : phone,
+		Email : email,
+	}
+}
