@@ -6,9 +6,9 @@ import(
 
 func process(conn net.Conn)  {
 	defer conn.Close()
+	fmt.Printf("服务器等待%v发送消息\n", conn.RemoteAddr().String())
 	for{
 		buf := make([]byte, 1024)
-		fmt.Printf("服务器等待%v发送消息\n", conn.RemoteAddr().String())
 		n, err := conn.Read(buf)//阻塞等待客户发送消息
 		if err != nil{
 			fmt.Println("Server conn.Read() err = ",err)
@@ -16,6 +16,8 @@ func process(conn net.Conn)  {
 		}
 		fmt.Println(string(buf[:n]))//打印实际接受到的数据
 	}
+	fmt.Printf("客户端%v已退出\n", conn.RemoteAddr().String())
+
 }
 
 func main()  {
