@@ -5,6 +5,8 @@ import (
 	"os"
 )
 
+var myID int
+
 //Show 展示登录成功后的界面
 func ShowMenu() {
 	fmt.Println("----------------------恭喜登录成功----------------------")
@@ -17,7 +19,8 @@ func ShowMenu() {
 	fmt.Scanln(&key)
 	switch key {
 	case 1:
-		fmt.Println("显示在线用户列表")
+		fmt.Println("在线用户：")
+		showOnlineUsers()
 	case 2:
 		fmt.Println("发送信息")
 	case 3:
