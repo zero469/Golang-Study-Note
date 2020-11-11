@@ -9,6 +9,8 @@ const (
 	RegisterResMesType = "RegisterResMesType"
 
 	UpdataUserStateMesType = "UpdataUserStateMesType"
+
+	SmsMesType = "SmsMesType"
 	//返回状态码
 	UnRegisterCode    = 500
 	LoginSuccessCode  = 200
@@ -19,7 +21,8 @@ const (
 	RegisterSuccessCode = 200
 
 	//用户状态
-	UserOnlineState = "UserOnlineState"
+	UserOnlineState  = "UserOnlineState"
+	UserOfflineState = "UserOfflineState"
 )
 
 //Message 为客户端和服务器公用的消息结构
@@ -53,4 +56,11 @@ type RegisterResMes struct {
 type UpdataUserStateMes struct {
 	UserID int    `json:"userid"`
 	State  string `json:"state"`
+}
+
+//SmsMes 消息类型
+type SmsMes struct {
+	SenderID int    `json:"senderid"`
+	Content  string `json:"content"`
+	RcverID  []int  `json:"rcvid"` //由发送发指定，如果为空表示群发
 }
