@@ -10,7 +10,8 @@ const (
 
 	UpdataUserStateMesType = "UpdataUserStateMesType"
 
-	SmsMesType = "SmsMesType"
+	SmsMesType    = "SmsMesType"
+	SmsResMesType = "SmsResMesType"
 	//返回状态码
 	UnRegisterCode    = 500
 	LoginSuccessCode  = 200
@@ -63,4 +64,11 @@ type SmsMes struct {
 	SenderID int    `json:"senderid"`
 	Content  string `json:"content"`
 	RcverID  []int  `json:"rcvid"` //由发送发指定，如果为空表示群发
+}
+
+//SmsResMes 服务器转发的消息，需要附带发送的时间戳
+type SmsResMes struct {
+	SenderID int    `json:"senderid"`
+	Content  string `json:"content"`
+	SendTime int64  `json:"sendtime"` //unix时间戳，由服务器获取
 }
